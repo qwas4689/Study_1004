@@ -25,7 +25,7 @@ public class RobotMovement : MonoBehaviour
 
     private void RobotMove()
     {
-        _rigidbody.MovePosition(transform.position + _moveDir.normalized);
-        gameObject.transform.LookAt(transform.position + _moveDir.normalized);
+        _rigidbody.MovePosition(transform.position + _moveDir.normalized * _robotBody.Speed);
+        gameObject.transform.LookAt(transform.position + _moveDir.normalized * _robotBody.Speed);
     }
 }

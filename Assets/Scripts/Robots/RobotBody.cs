@@ -26,6 +26,6 @@ public class RobotBody : MonoBehaviour
 
     private void Awake()
     {
-        Speed = 2f;
+        Speed = 0.5f;
     }
 }
