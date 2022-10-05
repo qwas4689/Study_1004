@@ -5,6 +5,7 @@ using UnityEngine;
 public class RobotBody : MonoBehaviour
 {
     private int damage;
+    private float _speed = 0.5f;
 
     public int Damage 
     { 
@@ -26,6 +27,6 @@ public class RobotBody : MonoBehaviour
 
     private void Awake()
     {
-        Speed = 0.5f;
+        Speed = _speed;
     }
 }
