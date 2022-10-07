@@ -8,6 +8,7 @@ public class RobotMovement : MonoBehaviour
     private RobotBody _robotBody;
     private Vector3 _moveDir;
     private float _mouseX;
+    private float _mouseZ;
 
     [SerializeField]
     private float _rotateSpeed = 2f;
@@ -23,6 +24,7 @@ public class RobotMovement : MonoBehaviour
         _moveDir.x = Input.GetAxisRaw("Horizontal");
         _moveDir.z = Input.GetAxisRaw("Vertical");
         _mouseX = Input.GetAxis("Mouse X");
+        _mouseZ = Input.GetAxis("Mouse Z");
     }
 
     private void FixedUpdate()
@@ -38,6 +40,5 @@ public class RobotMovement : MonoBehaviour
     private void RobotRotate()
     {
         gameObject.transform.Rotate(Vector3.up * _rotateSpeed * _mouseX);
-        gameObject.transform.LookAt(gameObject.transform.forward);
     }
 }
