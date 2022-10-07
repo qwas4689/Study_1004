@@ -8,10 +8,12 @@ public class RobotMovement : MonoBehaviour
     private RobotBody _robotBody;
     private Vector3 _moveDir;
     private float _mouseX;
-    private float _mouseZ;
+    private float _mouseMoveX;
+    private float _mouseY;
+    private float _mouseMoveY;
 
     [SerializeField]
-    private float _rotateSpeed = 2f;
+    private float _rotateSpeed = 200f;
 
     private void Start()
     {
@@ -21,10 +23,7 @@ public class RobotMovement : MonoBehaviour
 
     private void Update()
     {
-        _moveDir.x = Input.GetAxisRaw("Horizontal");
-        _moveDir.z = Input.GetAxisRaw("Vertical");
-        _mouseX = Input.GetAxis("Mouse X");
-        _mouseZ = Input.GetAxis("Mouse Z");
+        
     }
 
     private void FixedUpdate()
@@ -35,10 +34,21 @@ public class RobotMovement : MonoBehaviour
 
     private void RobotMove()
     {
+        _moveDir.x = Input.GetAxisRaw("Horizontal");
+        _moveDir.z = Input.GetAxisRaw("Vertical");
+
         _rigidbody.MovePosition(transform.position + _moveDir.normalized * _robotBody.Speed);
     }
     private void RobotRotate()
     {
-        gameObject.transform.Rotate(Vector3.up * _rotateSpeed * _mouseX);
+        _mouseX = -Input.GetAxis("Mouse Y") * Time.deltaTime * _rotateSpeed;
+        _mouseY = Input.GetAxis("Mouse X") * Time.deltaTime * _rotateSpeed;
+
+        _mouseMoveX = _mouseMoveX + _mouseX;
+        _mouseMoveY = transform.eulerAngles.y + _mouseY;
+
+        _mouseMoveX = Mathf.Clamp(_mouseMoveX, 0f, 0f);
+
+        transform.eulerAngles = new Vector3(_mouseMoveX, _mouseMoveY, 0f);
     }
 }

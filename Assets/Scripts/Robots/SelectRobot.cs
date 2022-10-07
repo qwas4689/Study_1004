@@ -7,6 +7,4 @@ public abstract class SelectRobot : MonoBehaviour
     public GameObject Head;
 
     public abstract void InputRobotNumber();
-
-    
 }
